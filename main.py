@@ -1,2 +1,2 @@
-import nump as np
+import numpy as np
 
