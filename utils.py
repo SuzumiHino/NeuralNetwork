@@ -1,4 +1,9 @@
 from numpy import array
+import gensim
+import gensim.downloader as download_api
+
+en_model = download_api.load("word2vec-google-news-300")
+ru_model = download_api.load('word2vec-ruscorpora-300')
 
 def vars() -> None:
 	"""
