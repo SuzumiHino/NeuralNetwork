@@ -31,30 +31,31 @@ import pymorphy2
 # 	df_2020_comment['user_comments'].apply(lambda x:len(x) > 2)]
 # df_2020_comment = df_2020_comment.reset_index(drop=True)
 
-stemmer = SnowballStemmer('russian')
-stop_words_ru = stop_words.get_stop_words('russian')
-pm = pymorphy2.MorphAnalyzer()
+def stemmer_func(language: str):
+	"""
+		Function support languages:
+			Arabic, Danish, Dutch, English, Finnish, French, German, Hungarian,
+			Italian, Norwegian, Porter, Portuguese, Romanian, Russian, Spanish,
+			Swedish
+	"""
+	stemmer = SnowballStemmer(language)
+	stop_words_ru = stop_words.get_stop_words(language)
+	pm = pymorphy2.MorphAnalyzer()
 
 def clear_txt(txt: str) -> str:
-    txt = txt.lower()
-    txt = re.sub('[/+_!@#$A-Za-z0-9\n.,:()""«»;-]', ' ', txt)
-    new_txt = ''
-    for t in txt.split(' '):
-        if len(t) > 0:
-            new_txt = new_txt + stemmer.stem(t) + ' '
-    return new_txt[:-1]
+	txt = txt.lower()
+	txt = re.sub('[/+_!@#$A-Za-z0-9\n.,:()""«»;-]', ' ', txt)
+	new_txt = ''
+	for t in txt.split(' '):
+		if len(t) > 0:
+			new_txt = new_txt + stemmer.stem(t) + ' '
+	return new_txt[:-1]
 	# for w in new_txt.split(' '):
 	# 	pm.parse(w)
 
 text = (
-	"Как видно из примера, стемминг удаляет концовки слов."
-	"Также можно применять леммитизацию, которая приводит слова к начальной "
-	"форме, благодаря этому получается более высокий процент точности."
-	"Стоит отметить минусы данного подхода, а именно: увеличивается время"
-	"обработки и подход не всегда дает положительный результат"
+	"текст, просто текст"
 )
 
 print(f"Исходник: \n{text}\n")
 print(f"Обработанный: \n{clear_txt(txt=text)}")
-
-
