@@ -1,29 +1,29 @@
 import numpy as np
 # import tensorflow as tf
-# import trained
-from tqdm import tqdm
+import time
+# from tqdm import tqdm
 from utils import Vars
+from rich.progress import Progress
+# import trained
 
-def epochsprint(function):
-	def wrapper(*args, **kwargs):
-		print("Training started")
-		function()
-		print("Training completed")
-	return wrapper()
-@epochsprint
+# def epochsprint(func):
+# 	def wrapper(*args, **kwargs):
+# 		print("Training started")
+# 		func()
+# 		print("Training completed")
+# 	return wrapper()
+
+def nn():
+	for i in range(100000):
+		return i + i
+
+def load(epochs: int):
+	with Progress() as progress:
+		task1 = progress.add_task("[red]Downloading...", total=epochs)
+
+		while not progress.finished:
+			progress.update(task1, advance=0.9)
+			nn()
+
 def main():
-	iterated = Vars.epochs
-	for epoch in tqdm(range(iterated)):
-		print(f"Epoch {epoch+1}: \n")
-
-
-try:
-	lambda x: main()
-except TypeError:
-	print("Warning: \n  TypeError\n> Script is complete with TypeError")
-else:
-	print("> Scripts is complete without errors\nVery Good")
-finally:
-	print("\nProgram completed.")
-
-
+	load(Vars.epochs)
