@@ -7,7 +7,9 @@ from time import time
 
 start_time = time()
 
-images, labels = utils.load_dataset()
+DATA_URL = "https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz"
+
+images, labels = utils.load_dataset(data_url=DATA_URL)
 
 weights_input_to_hidden = np.random.uniform(-0.5, .5, (30, 784))
 # weights_hidden_to_hidden = np.random.uniform(-0.5, .5, (20, 20))

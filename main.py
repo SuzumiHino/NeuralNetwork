@@ -14,12 +14,13 @@ from rich.progress import Progress
 # 	return wrapper()
 
 def nn():
-	for i in range(100000):
-		return i + i
+	# for i in range(100000):
+	# 	return i + i
+	pass
 
 def load(epochs: int):
 	with Progress() as progress:
-		task1 = progress.add_task("[red]Downloading...", total=epochs)
+		task1 = progress.add_task("[green]Training...", total=epochs)
 
 		while not progress.finished:
 			progress.update(task1, advance=0.9)
