@@ -1,3 +1,3 @@
 # Reccuret Neural Network
 
-### Alexandr Meleshkin 2024
+### © Alexandr Meleshkin, 2024
